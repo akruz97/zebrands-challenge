@@ -1,6 +1,4 @@
-
-
 export const UrlApi = {
-    users: '/search/users',
-    repositories: '/search/repositories'
-}
+  users: "/search/users",
+  repositories: "/search/repositories",
+};

@@ -1,17 +1,16 @@
 export interface InputSearchProps {
-    text: string,
-    placeholder: string,
-    onChangeText: (text: string) => void
+  text: string;
+  placeholder: string;
+  onChangeText: (text: string) => void;
 }
 
-
 export interface ItemProps<T> {
-    item: T,
-    index: number
+  item: T;
+  index: number;
 }
 
 export interface ListProps<T> {
-    items: T[], 
-    onEndReached: () => void 
-    loadingMore: boolean
+  items: T[];
+  onEndReached: () => void;
+  loadingMore: boolean;
 }

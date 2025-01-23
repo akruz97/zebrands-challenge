@@ -1,6 +1,4 @@
-
 import { useState, useEffect } from "react";
-import axios, { AxiosError } from "axios";
 import { ErrorHandler } from "@/src/utils/errorHandler";
 
 interface UsePaginationResult<T> {
@@ -8,29 +6,27 @@ interface UsePaginationResult<T> {
   isLoading: boolean; // Indicador de carga
   error: string | null; // Mensaje de error (si ocurre)
   currentPage: number; // Página actual
-  totalPages: number; // Total de páginas (si es conocido)
+  //totalPages: number; // Total de páginas (si es conocido)
   goToPage: (page: number) => void; // Cambiar a una página específica
   nextPage: () => void; // Ir a la siguiente página
   prevPage: () => void; // Ir a la página anterior
 }
 
 interface UsePaginationOptions<T> {
-    name?: string;
-    initialPage?: number; // Página inicial (default: 1)
-    //pageSize?: number; // Cantidad de elementos por página
-    fetcher: (name: string, page: number) => Promise<{ data: T[]}>; // Función de carga de datos
+  name?: string;
+  initialPage?: number; // Página inicial (default: 1)
+  fetcher: (name: string, page: number) => Promise<{ data: T[] }>; // Función de carga de datos
 }
 
 export function usePagination<T>({
-    name = '',
-    initialPage = 1,
-    fetcher,
+  name = "",
+  initialPage = 1,
+  fetcher,
 }: UsePaginationOptions<T>): UsePaginationResult<T> {
   const [data, setData] = useState<T[]>([]);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
-  const [totalPages, setTotalPages] = useState<number>(0);
 
   const loadPage = async (page: number) => {
     setIsLoading(true);
@@ -38,28 +34,27 @@ export function usePagination<T>({
     try {
       const response = await fetcher(name, page);
 
-      if(page === 1){
+      if (page === 1) {
         setData([...response.data]);
         return;
-      }else{
+      } else {
         const [firstItem] = response.data;
-        if(data.findIndex(item => item?.id === firstItem?.id) !== -1 ){
+        if (data.findIndex((item) => item?.id === firstItem?.id) !== -1) {
           return;
         }
-        
+
         setData([...data, ...response.data]);
       }
-
     } catch (err) {
-        const errorMessage = ErrorHandler.handleError(err);
-        setError(errorMessage);
+      const errorMessage = ErrorHandler.handleError(err);
+      setError(errorMessage);
     } finally {
       setIsLoading(false);
     }
   };
 
   const goToPage = (page: number) => {
-    if (page > 0 ) {
+    if (page > 0) {
       setCurrentPage(page);
     }
   };
@@ -68,13 +63,21 @@ export function usePagination<T>({
   const prevPage = () => goToPage(currentPage - 1);
 
   useEffect(() => {
-    if(!name.length){
-        setData([]);
-        setError(null);
-        return;
+    if (!name.length) {
+      setData([]);
+      setError(null);
+      return;
     }
     loadPage(currentPage);
   }, [currentPage, name]);
 
-  return { data, isLoading, error, currentPage, totalPages, goToPage, nextPage, prevPage };
+  return {
+    data,
+    isLoading,
+    error,
+    currentPage,
+    goToPage,
+    nextPage,
+    prevPage,
+  };
 }
