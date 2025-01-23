@@ -4,6 +4,13 @@ import { RepoItem } from "./RepoItem";
 import { GitHubRepository } from "@/src/interfaces/repositories";
 import { ItemProps, ListProps } from "@/src/interfaces";
 
+/**
+ * Componente que renderiza un listado de Repositorios de GitHub.
+ * @param {Array} items - Listado de repositorios.
+ * @param {() => void} onEndReached - Función que maneja la carga de más repositorios.
+ * @param {boolean} loadingMore - Boolean que representa el estado de carga de más respositorios.
+ */
+
 export const RepoList = ({
   items,
   onEndReached,

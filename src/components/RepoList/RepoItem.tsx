@@ -5,6 +5,13 @@ import Avatar from "../Avatar";
 import { GitHubRepository } from "@/src/interfaces/repositories";
 import { ItemProps } from "@/src/interfaces";
 
+/**
+ * Componente que renderiza un item de Repositorio de GitHub.
+ * @param {ItemProps<GitHubRepository>} props - Propiedades del componente
+ * @param {GitHubRepository} item - Objeto que representa un repositorio.
+ * @param {number} index - Numero que representa el indice del componente.
+ */
+
 export const RepoItem = ({ item, index }: ItemProps<GitHubRepository>) => {
   return (
     <Pressable key={index}>

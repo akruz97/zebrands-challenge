@@ -4,6 +4,14 @@ import { GitHubUser } from "../../interfaces/users";
 import { UserItem } from "./UserItem";
 import { ListProps } from "@/src/interfaces";
 
+/**
+ * Componente que renderiza un listado de usuarios GitHub.
+ * @param {ListProps<GitHubUser>} props - Propiedades del componente
+ * @param {Array<GitHubUser>} items - Arreglo de usuarios GitHub.
+ * @param {boolean} loadingMore - Estado de carga de usuarios.
+ * @param {() => void} onEndReached - Funcion que obtiene mas usuarios.
+ */
+
 export const UserList = ({
   items,
   onEndReached,

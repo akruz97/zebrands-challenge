@@ -7,6 +7,13 @@ import { ItemProps } from "@/src/interfaces";
 
 const { width } = Dimensions.get("window");
 
+/**
+ * Componente que renderiza un usuario de GitHub.
+ * @param {ItemProps<GitHubUser>} props - Propiedades del componente
+ * @param {GitHubUser} item - Objeto que representa un usuario.
+ * @param {number} index - Numero que representa el indice del componente.
+ */
+
 export const UserItem = ({ item, index }: ItemProps<GitHubUser>) => {
   return (
     <Pressable key={index}>
