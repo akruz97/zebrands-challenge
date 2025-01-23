@@ -1,6 +1,6 @@
 
 
 export const UrlApi = {
-    users: '/users/',
-    repositories: '/users/{{USERNAME}}/repos'
+    users: '/search/users',
+    repositories: '/search/repositories'
 }

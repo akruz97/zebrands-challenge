@@ -1,6 +1,4 @@
-
-
-export interface IUser {
+export interface GitHubUser {
     login: string;
     id: number;
     node_id: string;
@@ -31,7 +29,14 @@ export interface IUser {
     public_gists: number;
     followers: number;
     following: number;
+    user_view_type?: string;
     created_at: string; // ISO 8601 date
     updated_at: string; // ISO 8601 date
+  }
+
+  export interface IResponseUsers {
+    items: GitHubUser[],
+    total_count: number,
+    incomplete_results: boolean,
   }
   

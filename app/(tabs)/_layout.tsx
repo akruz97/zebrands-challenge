@@ -1,41 +1,29 @@
-import { Tabs } from 'expo-router';
+import {  Tabs } from 'expo-router';
+import { StatusBar } from 'expo-status-bar';
+import 'react-native-reanimated';
 import React from 'react';
-import { Platform } from 'react-native';
+import FontAwesome from "@expo/vector-icons/FontAwesome"
 
-
-import { Colors } from '@/src/constants/Colors';
-import { useColorScheme } from '@/src/constants/hooks/useColorScheme';
-
-export default function TabLayout() {
-  const colorScheme = useColorScheme();
+export default function TabsLayout() {
 
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: 'Users',
-          // tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="repo"
-        options={{
-          title: 'Repositories',
-          // tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
-        }}
-      />
-    </Tabs>
+    <>
+      <Tabs screenOptions={{ header: () => null }} >
+        <Tabs.Screen name="index" 
+                      options={{ 
+                        headerShown: false, 
+                        title: 'Users',
+                        tabBarIcon: ({ color }) => <FontAwesome size={28} name="user" color={color} />,
+                      }}/>
+        <Tabs.Screen name="repository"
+                      options={{ 
+                        headerShown: false, 
+                        title: 'Repositories',
+                        tabBarIcon: ({ color }) => <FontAwesome size={28} name="github" color={color} />, 
+                      }} />
+      </Tabs>
+      <StatusBar style="auto" />
+      </>
+
   );
 }
