@@ -27,7 +27,7 @@ This is a React Native App based on the Expo Framework. It searches GitHub for u
       EXPO_PUBLIC_API_URL = 'https://api.github.com'
       EXPO_PUBLIC_GITHUB_TOKEN = '<GITHUB PERSONAL ACCESS TOKEN>'
    ```
-- How to get [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens)
+- How to get [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens). GitHub token is used to increase the query limit. Because GitHub restricts its public API
 
 3. Start the app
 
