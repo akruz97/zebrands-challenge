@@ -4,7 +4,7 @@ import { GitHubRepositorySearchResponse } from "../interfaces/repositories";
 
 /**
  * Función que consulta repositorios de GitHub por su nombre.
- * @param {string} username - Nombre de repositorio a buscar.
+ * @param {string} name - Nombre de repositorio a buscar.
  * @param {number} page - Número de página a consultar.
  * @returns {Array<Object>} Retorna repositorios de GitHub por nombre.
  */
