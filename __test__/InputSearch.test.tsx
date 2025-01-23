@@ -3,8 +3,8 @@ import { fireEvent, render } from "@testing-library/react-native";
 import InputSearch from "@/src/components/InputSearch";
 import React from "react";
 
-describe("<Title />", () => {
-  it("Renderiza el titulo de la pagina", () => {
+describe("<InputSearch />", () => {
+  it("Renderiza el input de búsqueda", () => {
     const placeholder = "Escribe aquí";
 
     // Renderizamos el componente
