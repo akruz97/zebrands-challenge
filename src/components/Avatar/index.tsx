@@ -8,6 +8,7 @@ const Avatar = ({ urlImage }: { urlImage: string | undefined }) => {
       <Image
         source={{ uri: urlImage }}
         className="object-fill flex-1 rounded-full"
+        testID="avatar-user"
       />
     </View>
   );

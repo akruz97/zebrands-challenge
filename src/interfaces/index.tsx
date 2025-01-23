@@ -1,7 +1,7 @@
 export interface InputSearchProps {
-  text: string;
-  placeholder: string;
-  onChangeText: (text: string) => void;
+  text?: string;
+  placeholder?: string;
+  onChangeText?: (text: string) => void;
 }
 
 export interface ItemProps<T> {
