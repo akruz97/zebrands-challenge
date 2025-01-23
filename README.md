@@ -29,7 +29,7 @@ This is a React Native App based on the Expo Framework. It searches GitHub for u
    ```
 - How to get [GitHub Personal Access Token](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens). GitHub token is used to increase the query limit. Because GitHub restricts its public API
 
-3. Start the app
+4. Start the app
 
    ```bash
     npx expo start
