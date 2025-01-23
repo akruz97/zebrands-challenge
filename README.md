@@ -2,7 +2,7 @@
 
 This is a React Native App based on the Expo Framework. It searches GitHub for users by their username and repositories by their name.
 
-- Url: [App Chanllenge](https://zebrands-app--g1fuy9aefj.expo.app)
+- Url: [App Challenge](https://zebrands-app--g1fuy9aefj.expo.app)
 
 ## Requisites
 
