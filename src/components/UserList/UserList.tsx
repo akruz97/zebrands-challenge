@@ -1,8 +1,10 @@
 import React from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { GitHubUser } from "../../interfaces/users";
 import { UserItem } from "./UserItem";
 import { ListProps } from "@/src/interfaces";
+import FooterList from "../FooterList";
+import EmptyList from "../EmptyList";
 
 /**
  * Componente que renderiza un listado de usuarios GitHub.
@@ -21,16 +23,6 @@ export const UserList = ({
     return <UserItem item={item} index={index} key={index} />;
   };
 
-  const renderFooter = () => {
-    return loadingMore ? (
-      <View className="h-48 items-center justify-center">
-        <ActivityIndicator size="large" color="#1f1f1f" />
-      </View>
-    ) : (
-      <View className="h-48" />
-    );
-  };
-
   return (
     <FlatList
       data={items}
@@ -43,8 +35,9 @@ export const UserList = ({
       }}
       onEndReachedThreshold={0.1}
       onEndReached={onEndReached}
-      ListFooterComponent={renderFooter}
+      ListFooterComponent={<FooterList loading={loadingMore} />}
       numColumns={2}
+      ListEmptyComponent={<EmptyList />}
     />
   );
 };

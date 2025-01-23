@@ -10,6 +10,7 @@ interface UsePaginationResult<T> {
   goToPage: (page: number) => void; // Cambiar a una página específica
   nextPage: () => void; // Ir a la siguiente página
   prevPage: () => void; // Ir a la página anterior
+  loadingMore: boolean;
 }
 
 interface UsePaginationOptions<T> {
@@ -27,14 +28,22 @@ export function usePagination<T>({
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   const [currentPage, setCurrentPage] = useState<number>(initialPage);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
 
   const loadPage = async (page: number) => {
-    setIsLoading(true);
+    if (page === 1) {
+      setIsLoading(true);
+    } else {
+      setLoadingMore(true);
+    }
+    // setIsLoading(true);
+
     setError(null);
     try {
       const response = await fetcher(name, page);
 
       if (page === 1) {
+        setIsLoading(false);
         setData([...response.data]);
         return;
       } else {
@@ -42,14 +51,17 @@ export function usePagination<T>({
         if (data.findIndex((item) => item?.id === firstItem?.id) !== -1) {
           return;
         }
-
+        setLoadingMore(false);
         setData([...data, ...response.data]);
       }
     } catch (err) {
       const errorMessage = ErrorHandler.handleError(err);
       setError(errorMessage);
+      setData([]);
+      setIsLoading(false);
     } finally {
       setIsLoading(false);
+      setLoadingMore(false);
     }
   };
 
@@ -74,6 +86,7 @@ export function usePagination<T>({
   return {
     data,
     isLoading,
+    loadingMore,
     error,
     currentPage,
     goToPage,

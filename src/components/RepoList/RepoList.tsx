@@ -1,8 +1,10 @@
 import React from "react";
-import { ActivityIndicator, FlatList, View } from "react-native";
+import { FlatList } from "react-native";
 import { RepoItem } from "./RepoItem";
 import { GitHubRepository } from "@/src/interfaces/repositories";
 import { ItemProps, ListProps } from "@/src/interfaces";
+import EmptyList from "../EmptyList";
+import FooterList from "../FooterList";
 
 /**
  * Componente que renderiza un listado de Repositorios de GitHub.
@@ -20,18 +22,6 @@ export const RepoList = ({
     return <RepoItem item={item} index={index} key={index} />;
   };
 
-  const renderFooter = () => {
-    return loadingMore ? (
-      <View
-        style={{ height: 50, alignItems: "center", justifyContent: "center" }}
-      >
-        <ActivityIndicator size="large" color="#1f1f1f" />
-      </View>
-    ) : (
-      <View style={{ height: 50 }} />
-    );
-  };
-
   return (
     <FlatList
       data={items}
@@ -40,8 +30,9 @@ export const RepoList = ({
       style={{ flex: 1 }}
       onEndReachedThreshold={0.1}
       onEndReached={onEndReached}
-      ListFooterComponent={renderFooter}
+      ListFooterComponent={<FooterList loading={loadingMore} />}
       numColumns={1}
+      ListEmptyComponent={EmptyList}
     />
   );
 };

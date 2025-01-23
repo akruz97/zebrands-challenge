@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import { ActivityIndicator, Text, View } from "react-native";
 
 import { UserList } from "@/src/components/UserList/UserList";
 import InputSearch from "@/src/components/InputSearch";
@@ -11,7 +11,7 @@ import { getUsersByUsername } from "@/src/actions/userActions";
 const UserPage = () => {
   const [username, setUsername] = useState<string>("");
 
-  const { data, error, goToPage, isLoading, nextPage } =
+  const { data, error, goToPage, isLoading, nextPage, loadingMore } =
     usePagination<GitHubUser>({
       initialPage: 1,
       name: username,
@@ -39,23 +39,22 @@ const UserPage = () => {
         onChangeText={onChangeUsername}
         placeholder="Insert username"
       />
-      {!data.length ? (
-        <>
-          <View className="flex-1 justify-center items-center">
-            {error ? (
-              <Text className="text-md color-slate-400">{error}</Text>
-            ) : (
-              <Text className="text-md color-slate-400">
-                {"No se han encontrado resultados"}
-              </Text>
-            )}
-          </View>
-        </>
+
+      {error && (
+        <View className="flex-1 justify-center items-center">
+          <Text className="text-md color-red-500">{error}</Text>
+        </View>
+      )}
+
+      {isLoading ? (
+        <View className="flex-1 justify-center items-center">
+          <ActivityIndicator size={32} />
+        </View>
       ) : (
         <UserList
           items={data}
           onEndReached={handleLoadMore}
-          loadingMore={isLoading}
+          loadingMore={loadingMore}
         />
       )}
     </View>
